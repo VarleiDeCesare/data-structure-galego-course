@@ -121,19 +121,72 @@ def containsNearbyDuplicate(nums, k):
 
 def twoSum(nums, target):
   d = {}
-
   for i, num in enumerate(nums):
-    print(f'i {i}')
-    print(f'num {num}')
     diff = target - num
-    print(f'diff {diff}')
-    print(f'd {d}')
-    print(f'd.get(diff)', d.get(diff))
     if d.get(diff) != None:
-      print('FOUNDED')
       return [d.get(diff), i]
     d[num] = i
 
-  print(d)
+# print(twoSum([2,7,11,15], 9));
 
-print(twoSum([2,7,11,15], 9));
+
+#leetcode 148. Sort List
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+class Solution:
+    def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        def findMiddle(head):
+            slow = head
+            fast = head.next
+            while fast and fast.next:
+                slow = slow.next
+                fast = fast.next.next
+            return slow
+
+        def mergeTwoLists(l1, l2):
+            head = ListNode()
+            tail = head
+
+            while l1 and l2:
+                if l1.val < l2.val:
+                    tail.next = l1
+                    l1 = l1.next
+                else:
+                    tail.next = l2
+                    l2.next = l2
+                tail = tail.next
+            tail.next = l1 or l2
+            return head.next
+
+        def mergeSort(head):
+            if not head and head.next:
+                return head
+
+            middle = findMiddle(head)
+            after_middle = middle.next
+            middle.next = None
+
+            left = mergeSort(head)
+            right = mergeSort(after_middle)
+
+            return mergeTwoLists(left, right)
+        def buildLinkedList(values):
+            if not values:
+                return None
+            head = ListNode(values[0])
+            current = head
+            for val in values[1:]:
+                current.next = ListNode(val, None)
+                current = current.next
+            return head
+
+        headBuilded = buildLinkedList(head)
+        return mergeSort(headBuilded)
+
+solution = Solution()
+sorted_list = solution.sortList([-1,5,3,4,0])
+print(sorted_list)

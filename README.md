@@ -57,3 +57,22 @@ Ex: Busca pelo maior valor de um array.
 - O (n^2)
   - Loop dentro de um outro Loop.
   - para cada item dentro do array, percorre novamente outro array, ou até o mesmo array.
+
+\*\*Sorting
+
+- Bubble Sort - Time Complexity: O(n^2) - Space complexity: O(1)
+
+  - Para fazer a ordenação, são usados dois ponteiros, um atrás do outro, começaria com:
+    - 1 ponteiro arr[0] e 2nd ponteiro em arr[1]
+    - É sempre comparado um item com o outro dos ponteiros, se o [1] for menor doq o [0] nesse caso de inicio, será swapado, e seguirá em diante para os proximos dois itens [2] [3]...
+    - Complexidade é ^2 pois seria quase um loop dentro de outro loop
+  - [1,2,3,4,5]....
+
+  - QuickSort - Worst Time complexity O(n^2) Space Complexity: O(n)
+
+    - Algoritmo de divider and conquer, basicamente deve-se escolher um pivot, e com base nele usar novamente dois ponteiros, valida-se se os valores são menores ou maiores que o valor do pivot, fazendo swap entre eles, e no final encontrando o local correto para o valor pivot. Essa regra deve-se ser feita de forma recursiva em um array, sendo chamado para cada quadrante de elementos que foi dividido pelo pivot, maiores e menores, e feito a mesma regra entre eles
+
+  - MergeSort - Time complexity O(n log n) Space Complexity: O(n)
+    - Indicado para uso em linked lists.
+    - Primeiro Passo (Dividir até um nodo). Irá utilizar dois ponteiros novamnete (fast, slow). Fast precisa encontrar o ultimo elemento, para que o slow chegue no exato meio e possa quebrar a linked list em dois, esse mesmo processo será feito para os sub arrays, até que se separe todos os valores (todos os nodo separados).
+    - Segundo Passo (Merge em ordem). Irá começar a juntar novamente os valores, então usando dois ponteiros, faz a comparação entre esses valores, troca a ordem e aponta o menor para o maior (direita p/esquerda). Agora compara os primeiros valores de cada subarray, o menor valor é colocado na frente, compara o valor do mesmo array que foi pego o primeiro valor, compara com o primeiro item do outro array, e ordena na nova linked list, assim fazendo a ordem.
